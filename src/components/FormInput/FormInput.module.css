@@ -1,0 +1,13 @@
+.title {
+    color: rgb(150, 78, 250);
+    text-shadow: 4px 4px 1px white;
+}
+.btnSubmit {
+    margin: 10px;
+    border: 1px solid blue;
+    border-radius: 5px;
+}
+.btnSubmit:hover {
+    cursor: pointer;
+    background-color: aquamarine;
+}
