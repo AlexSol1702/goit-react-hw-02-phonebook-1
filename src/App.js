@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { FormInput } from "./components/FormInput/FormInput";
+
 import { Contacts } from "./components/Contacts/Contacts";
 import initialContacts from "./components/Contacts/initialContacts.json";
 import { nanoid } from "nanoid";
@@ -9,6 +10,7 @@ import "./App.css";
 class App extends Component {
   state = {
     contacts: initialContacts,
+    filterName: [],
   };
 
   deleteContact = (contactId) =>
@@ -18,14 +20,21 @@ class App extends Component {
       ),
     }));
 
-  changeFilter = (text) => {
+  
+
+  onChangeFilter = (text) => {
     const toLowerText = text.toLowerCase();
 
-    this.setState((prevState) => ({
-      contacts: prevState.contacts.filter((contact) =>
-        contact.name.toLowerCase().includes(toLowerText)
-      ),
-    }));
+    if (text.length <= 1) {
+      this.setState({filterName: []})
+    } else {
+      this.setState((prevState) => ({
+        filterName: prevState.contacts.filter((contact) =>
+          contact.name.toLowerCase().includes(toLowerText)
+        ),
+      }));
+    }
+    
   };
 
   addContact = (contact) => {
@@ -45,15 +54,17 @@ class App extends Component {
   };
 
   render() {
-    const { contacts } = this.state;
+    const { contacts, filterName } = this.state;
     return (
       <div className="section">
         <>
           <FormInput onSubmit={this.addContact} />
+
           <Contacts
-            contacts={contacts}
+            contacts={filterName.length > 0 ? filterName : contacts}
             onDeleteContact={this.deleteContact}
-            onChangeFilter={this.changeFilter}
+            onChangeFilter={this.onChangeFilter}
+            
           />
         </>
       </div>

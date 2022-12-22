@@ -6,8 +6,10 @@ export class Filter extends Component {
   };
 
   handleChange = (e) => {
-    this.setState({ text: e.target.value });
-    this.props.onChangeFilter(this.state.text);
+     
+      this.setState({ text: e.target.value });
+      this.props.onChangeFilter(this.state.text);
+      
   };
 
   render() {

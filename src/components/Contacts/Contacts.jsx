@@ -3,10 +3,17 @@ import { Contact } from "../Contact/Contact";
 import styles from "./Contacts.module.css";
 import { Filter } from "../Filter/Filter";
 
-export const Contacts = ({ contacts, onDeleteContact, onChangeFilter }) => (
+export const Contacts = ({
+  contacts,
+  onDeleteContact,
+  onChangeFilter,
+ 
+}) => (
   <>
     <h2 className={styles.title}>Contacts</h2>
-    <Filter onChangeFilter={onChangeFilter}/>
+
+    <Filter onChangeFilter={onChangeFilter}  />
+
     <ol className={styles.list}>
       {contacts.map((contact) => (
         <Contact
