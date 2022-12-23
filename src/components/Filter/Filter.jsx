@@ -1,25 +1,17 @@
 import { Component } from "react";
 
-export class Filter extends Component {
-  state = {
-    text: "",
-  };
-
-  handleChange = (e) => {
-     
-      this.setState({ text: e.target.value });
-      this.props.onChangeFilter(this.state.text);
-      
-  };
+export class Filter extends Component { 
 
   render() {
+    const value = this.props.value
+    const onChangeFilter = this.props.onChangeFilter
     return (
       <label>
         <p>Find contacts by name</p>
         <input
           type="text"
-          value={this.state.text}
-          onChange={this.handleChange}
+          value={value}
+          onChange={e => onChangeFilter(e.target.value)}
         />
       </label>
     );
